@@ -71,6 +71,7 @@
 #include "Tonic/ControlRandom.h"
 #include "Tonic/ControlSnapToScale.h"
 #include "Tonic/ControlMidiToFreq.h"
+#include "Tonic/ControlClamp.h"
 
 
 #endif

@@ -39,28 +39,44 @@ public:
     
     Adder sumOfFilters;
     
+    ControlGenerator toothyBassChangeTrigger = ControlMetro().bpm( ControlRandom().min(3).max(10).trigger( ControlMetro().bpm(100) ));
     ControlGenerator lowBasFreq =   ControlFloor().in( midiNums.at(0) + 12 + cutoffCtrl * cutoffMult ) >> ControlMidiToFreq();
+    ControlGenerator lowBasFreq2 =   ControlFloor().in( midiNums.at(0) + 12 + cutoffCtrl * cutoffMult  + 0.01) >> ControlMidiToFreq();
     ControlGenerator fmAmt = ControlValue(0.1);
     Generator cutoffSlowSwell = (SineWave().freq(0.1) + 1.0f) * 500;
     cutoffSlowSwell = FixedValue(500);
-    Generator lpfCutoff = 100 + (cutoffSlowSwell + 0.5 * SineWave().freq(10) * cutoffSlowSwell);
-    LPF12 filter = LPF12().cutoff(lpfCutoff);
-    
+    Generator lpfCutoff = 100 + (cutoffSlowSwell + 0.5 * SineWave().freq( ControlRandom().min(0.001).max(50).trigger(toothyBassChangeTrigger) ) * cutoffSlowSwell);
+    Generator lpfCutoff2 = 100 + (cutoffSlowSwell + 0.5 * SineWave().freq( ControlRandom().min(0.001).max(50).trigger(toothyBassChangeTrigger) ) * cutoffSlowSwell);
+   
     ControlGenerator toothyBassRandomAmp = ControlRandom()
-        .min(-0.1)
+        .min(-3)
         .max(1)
-        .trigger(
-            ControlMetro().bpm( ControlRandom().min(10).max(30) )
-        );
+        .trigger(toothyBassChangeTrigger)
+        >> ControlClamp().min(0).max(1)
+        ;
     
-    Generator toothyBassSwell = ( (toothyBassRandomAmp * toothyBassRandomAmp * toothyBassRandomAmp * 5) >> ControlPrinter().message("toothyBassSwell %f") ).smoothed(10);
+    Generator toothyBassSwell = ( (toothyBassRandomAmp * toothyBassRandomAmp * toothyBassRandomAmp * 5) ).smoothed(10);
     
     Generator lowToothyBass =
       RectWave()
       .freq(  lowBasFreq )
       .pwm(  0.5 + 0.2 * (SineWave().freq(0.013) + 1)  );
     
-    lowToothyBass = filter.input( lowToothyBass );
+    
+    Generator lowToothyBass2 =
+      RectWave()
+      .freq(  lowBasFreq2 )
+      .pwm(  0.5 + 0.2 * (SineWave().freq(0.013) + 1)  );
+    
+    
+    LPF12 filterL = LPF12().cutoff(lpfCutoff);
+    LPF12 filterR = LPF12().cutoff(lpfCutoff2);
+    
+    
+    lowToothyBass = MonoToStereoPanner().pan(-1).input( filterL.input( lowToothyBass ))
+      +
+    MonoToStereoPanner().pan(1).input( filterR.input( lowToothyBass2 ));
+    
     lowToothyBass = lowToothyBass * toothyBassSwell;
     
     for(int i = 0; i < midiNums.size(); i++){
@@ -73,8 +89,8 @@ public:
     // add a bit of gain for higher Q
     // Using this to test output limiter as well - this will probably clip/wrap if limiter is not working
     outputGen =
-      sumOfFilters * (1 + q_v * 0.05)
-      +
+    sumOfFilters * (1 + q_v * 0.05)
+    +
       lowToothyBass * 0.05;
     
     
