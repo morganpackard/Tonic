@@ -52,7 +52,7 @@ public:
     
     Generator freq = ControlValue(50).smoothed();
     Generator tremelo =  1 + ( SineWave().freq(15) *  ADSR(0, 0.5, 0,0).trigger(modeSwitch) );
-    Generator bassEnv = ADSR(0.001, 0.1 ,0,0).decay(decay).legato(true).sustain(sustain * sustain).trigger(metro);
+    Generator bassEnv = ADSR(0.01, 0.1 ,0,0).decay(decay).legato(true).sustain(sustain * sustain).trigger(metro);
     ControlGenerator spread = ControlRandom().min(0).max(0.5).trigger(modeSwitch);// * spreadSeq;
     ControlGenerator wave = ControlRandom().min(0.4).max(0.9).trigger(modeSwitch);
     
@@ -87,7 +87,14 @@ public:
       >> LPF12().cutoff(5500)
       >> StereoDelay(1.1, 1.2).mix(0.1) ;
     Generator bassWithAmp = bass * bassEnv * tremelo;
-    outputGen = bassWithAmp  + click;
+    
+    
+    /////////////// noise ////////////
+    
+    Generator noise =  PinkNoise() >> BPF24().cutoff(ControlRandom().min(200).max(5000).trigger(modeSwitch)) ;
+    
+    
+    outputGen = bassWithAmp  + click + noise * 0.1;
   }
 };
 
