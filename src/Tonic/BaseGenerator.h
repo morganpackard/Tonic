@@ -31,6 +31,7 @@ namespace Tonic {
       
         void setSynthesisContext( const SynthesisContext_ & context ) { context_ = context; }
       
+        BaseGenerator getInputGenerator( string name );
         void registerInputGenerator( BaseGenerator inputGen, string name );
       
       protected:

@@ -44,7 +44,6 @@ namespace Tonic {
       
       double phase_;
       
-      Generator frequencyGenerator_;
       TonicFrames modFrames_;
       
       void computeOutput( const SynthesisContext_ & context );
@@ -58,7 +57,8 @@ namespace Tonic {
       
       //! Set frequency generator input
       void setFrequency( Generator genArg){
-        frequencyGenerator_ = genArg;
+        // !!!: Commented out for the sake of trying named inputs
+        //frequencyGenerator_ = genArg;
       }
       
       //! set sample table for lookup. MUST BE POWER OF 2 IN LENGTH
@@ -69,7 +69,8 @@ namespace Tonic {
     inline void TableLookupOsc_::computeOutput( const SynthesisContext_ & context ){
       
       // Update the frequency data
-      frequencyGenerator_.tick(modFrames_, context);
+      Generator frequencyGen = getInputGenerator("freq");
+      frequencyGen.tick(modFrames_, context);
       
       unsigned long tableSize = lookupTable_.size()-1;
       

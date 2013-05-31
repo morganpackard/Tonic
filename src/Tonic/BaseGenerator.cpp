@@ -20,6 +20,10 @@ namespace Tonic {
       inputGenerators_[name] = inputGen;
     }
     
+    BaseGenerator BaseGenerator_::getInputGenerator(string name){
+      return inputGenerators_[name];
+    }
+    
   }
 
 }

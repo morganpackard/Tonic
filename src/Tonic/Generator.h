@@ -69,6 +69,9 @@ namespace Tonic {
     public:
     
       Generator(Tonic_::Generator_ * gen = NULL) : BaseGenerator(gen) {}
+
+      // allow conversion from base class
+      Generator( const BaseGenerator & gen );
     
       bool isStereoOutput(){
         return static_cast<Tonic_::Generator_*>(obj)->isStereoOutput();

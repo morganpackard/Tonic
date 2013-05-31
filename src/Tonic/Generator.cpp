@@ -12,17 +12,23 @@
 #include "Generator.h"
 #include "Multiplier.h"
 
-namespace Tonic{ namespace Tonic_{
+namespace Tonic{
   
-  Generator_::Generator_() : isStereoOutput_(false){
-    outputFrames_.resize(kSynthesisBlockSize, 1, 0);
-  }
-    
-  void Generator_::setIsStereoOutput(bool stereo){
-    if (stereo != isStereoOutput_){
-      outputFrames_.resize(kSynthesisBlockSize, stereo ? 2 : 1, 0);
+  namespace Tonic_{
+  
+    Generator_::Generator_() : isStereoOutput_(false){
+      outputFrames_.resize(kSynthesisBlockSize, 1, 0);
     }
-    isStereoOutput_ = stereo;
-  }
+      
+    void Generator_::setIsStereoOutput(bool stereo){
+      if (stereo != isStereoOutput_){
+        outputFrames_.resize(kSynthesisBlockSize, stereo ? 2 : 1, 0);
+      }
+      isStereoOutput_ = stereo;
+    }
 
-}}
+  }
+  
+  Generator::Generator( const BaseGenerator & gen ) : BaseGenerator(gen) {};
+  
+}
