@@ -16,14 +16,6 @@
 namespace Tonic{
   namespace Tonic_{
     
-    ControlGenerator_::ControlGenerator_() :
-      lastFrameIndex_(0)
-    {
-    }
-
-    ControlGenerator_::~ControlGenerator_(){
-    }
-    
     ControlGeneratorOutput ControlGenerator_::initialOutput(){
       // return output from passing in dummy context
       return tick(Tonic::DummyContext);
@@ -31,7 +23,7 @@ namespace Tonic{
     
   }
   RampedValue ControlGenerator::smoothed(float length){
-    return RampedValue( obj->initialOutput().value, length ).target(*this);
+    return RampedValue( static_cast<Tonic_::ControlGenerator_*>(obj)->initialOutput().value, length ).target(*this);
   }
   
 }

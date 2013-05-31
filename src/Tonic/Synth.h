@@ -12,7 +12,6 @@
 #ifndef __Tonic__Synth__
 #define __Tonic__Synth__
 
-#include <map>
 #include "BufferFiller.h"
 #include "ControlParameter.h"
 #include "CompressorLimiter.h"

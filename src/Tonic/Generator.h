@@ -12,37 +12,31 @@
 #ifndef __Tonic__Generator__
 #define __Tonic__Generator__
 
+#include "BaseGenerator.h"
 #include "TonicFrames.h"
 #include <cmath>
 namespace Tonic {
 
   namespace Tonic_{
 
-    class Generator_{
+    class Generator_ : public BaseGenerator_ {
       
-    public:
-      
-      Generator_();
-      virtual ~Generator_();
-      
-      virtual void tick( TonicFrames& frames, const SynthesisContext_ &context );
-      
-      bool isStereoOutput(){ return isStereoOutput_; };
-      
-      // set stereo/mono - changes number of channels in outputFrames_
-      // subclasses should call in constructor to determine channel output
-      virtual void setIsStereoOutput( bool stereo );
-      
-    protected:
-      
-      // override point for defining generator behavior
-      // subclasses should implment to fill frames with new data
-      virtual void computeOutput( const SynthesisContext_ &context ) {};
-
-      
-      bool            isStereoOutput_;
-      TonicFrames     outputFrames_;
-      unsigned long   lastFrameIndex_;
+      public:
+        
+        Generator_();
+        
+        virtual void tick( TonicFrames& frames, const SynthesisContext_ &context );
+        
+        bool isStereoOutput(){ return isStereoOutput_; };
+        
+        // set stereo/mono - changes number of channels in outputFrames_
+        // subclasses should call in constructor to determine channel output
+        virtual void setIsStereoOutput( bool stereo );
+        
+      protected:
+        
+        bool            isStereoOutput_;
+        TonicFrames     outputFrames_;
       
     };
     
@@ -62,30 +56,30 @@ namespace Tonic {
   }
 
   
-  class Generator : public TonicSmartPointer<Tonic_::Generator_>{
+  class Generator : public BaseGenerator {
 
   public:
-    
-    Generator( Tonic_::Generator_ * gen = new Tonic_::Generator_ ) : TonicSmartPointer<Tonic_::Generator_>(gen) {}
-    
-    inline bool isStereoOutput(){
-      return obj->isStereoOutput();
-    }
-    
-    virtual void tick(TonicFrames& frames, const Tonic_::SynthesisContext_ & context){
-      obj->tick(frames, context);
-    }
 
+      Generator(Tonic_::Generator_ * gen = NULL) : BaseGenerator(gen) {}
+    
+      bool isStereoOutput(){
+        return static_cast<Tonic_::Generator_*>(obj)->isStereoOutput();
+      }
+      
+      virtual void tick(TonicFrames& frames, const Tonic_::SynthesisContext_ & context){
+        static_cast<Tonic_::Generator_*>(obj)->tick(frames, context);
+      }
   };
   
   template<class GenType>
-  class TemplatedGenerator : public Generator{
-  protected:
-    GenType* gen(){
-      return static_cast<GenType*>(obj);
-    }
-  public:
-    TemplatedGenerator() : Generator(new GenType) {}
+  class TemplatedGenerator : public Generator
+  {
+    protected:
+      GenType* gen(){
+        return static_cast<GenType*>(obj);
+      }
+    public:
+      TemplatedGenerator() : Generator(new GenType) {}
   };
   
 }
@@ -101,6 +95,7 @@ namespace Tonic {
                                                                                         \
   generatorClassName& methodNameInGenerator(Generator arg){                             \
     this->gen()->methodNameInGenerator_(arg);                                           \
+    this->gen()->registerInputGenerator(arg, #methodNameInGenerator);                   \
     return static_cast<generatorClassName&>(*this);                                     \
   }                                                                                     \
                                                                                         \
