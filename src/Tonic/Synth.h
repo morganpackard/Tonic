@@ -36,7 +36,7 @@ namespace Tonic{
       std::map<string, ControlParameter> parameters_;
       std::vector<string> orderedParameterNames_;
       
-      void computeSynthesisBlock(const Tonic::Tonic_::SynthesisContext_ &context);
+      void computeOutput(const Tonic::Tonic_::SynthesisContext_ &context);
       
     public:
       
@@ -64,7 +64,7 @@ namespace Tonic{
             
     };
     
-    inline void Synth_::computeSynthesisBlock(const SynthesisContext_ &context){
+    inline void Synth_::computeOutput(const SynthesisContext_ &context){
 
       outputGen_.tick(outputFrames_, context);
       

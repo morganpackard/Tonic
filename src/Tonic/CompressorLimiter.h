@@ -43,7 +43,7 @@ namespace Tonic {
       
       bool isLimiter_;
       
-      void computeSynthesisBlock( const SynthesisContext_ &context );
+      void computeOutput( const SynthesisContext_ &context );
       
     public:
       
@@ -87,7 +87,7 @@ namespace Tonic {
       Effect_::tickThrough(inFrames, outFrames, context);
     }
     
-    inline void Compressor_::computeSynthesisBlock(const SynthesisContext_ &context){
+    inline void Compressor_::computeOutput(const SynthesisContext_ &context){
       
       // Tick all scalar parameters
       float attackCoef = t60ToOnePoleCoef(max(0,attackGen_.tick(context).value));

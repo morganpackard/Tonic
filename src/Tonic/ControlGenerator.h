@@ -35,10 +35,6 @@ namespace Tonic {
     
       ControlGenerator_();
       virtual ~ControlGenerator_();
-            
-      // mutex for swapping inputs, etc
-      void lockMutex();
-      void unlockMutex();
       
       // Only override tick if you need custom reuse behavior
       // Pass in a pointer to a TonicFloat to return a value. Some generators may not care about value.

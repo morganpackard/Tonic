@@ -26,7 +26,7 @@ namespace Tonic {
       ControlGenerator panControlGen;
       TonicFrames panFrames;
       
-      void computeSynthesisBlock( const SynthesisContext_ &context );
+      void computeOutput( const SynthesisContext_ &context );
       
     public:
       MonoToStereoPanner_();
@@ -35,7 +35,7 @@ namespace Tonic {
       
     };
     
-    inline void MonoToStereoPanner_::computeSynthesisBlock(const SynthesisContext_ &context){
+    inline void MonoToStereoPanner_::computeOutput(const SynthesisContext_ &context){
       
       TonicFloat *synthBlockWriteHead = &outputFrames_[0];
       TonicFloat *dryFramesReadHead = &dryFrames_[0];

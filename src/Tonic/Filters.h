@@ -53,7 +53,7 @@ namespace Tonic {
       
       bool bNormalizeGain_;
       
-      void computeSynthesisBlock( const SynthesisContext_ & context );
+      void computeOutput( const SynthesisContext_ & context );
       
       // subclasses override to compute new coefficients and apply filter
       virtual void applyFilter( TonicFloat cutoff, TonicFloat Q,  const SynthesisContext_ & context ) = 0;
@@ -73,7 +73,7 @@ namespace Tonic {
             
     };
     
-    inline void Filter_::computeSynthesisBlock( const SynthesisContext_ & context ){
+    inline void Filter_::computeOutput( const SynthesisContext_ & context ){
       
       TonicFloat cCutoff;
       TonicFloat cQ;

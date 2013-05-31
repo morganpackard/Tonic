@@ -13,36 +13,36 @@
 #define __Tonic__Generator__
 
 #include "TonicFrames.h"
-#include <cmath>
+
 namespace Tonic {
 
   namespace Tonic_{
 
     class Generator_{
       
-    public:
-      
-      Generator_();
-      virtual ~Generator_();
-      
-      virtual void tick( TonicFrames& frames, const SynthesisContext_ &context );
-      
-      bool isStereoOutput(){ return isStereoOutput_; };
-      
-      // set stereo/mono - changes number of channels in outputFrames_
-      // subclasses should call in constructor to determine channel output
-      virtual void setIsStereoOutput( bool stereo );
-      
-    protected:
-      
-      // override point for defining generator behavior
-      // subclasses should implment to fill frames with new data
-      virtual void computeSynthesisBlock( const SynthesisContext_ &context ) = 0;
+      public:
+        
+        Generator_();
+        virtual ~Generator_();
+        
+        virtual void tick( TonicFrames& frames, const SynthesisContext_ &context );
+        
+        bool isStereoOutput(){ return isStereoOutput_; };
+        
+        // set stereo/mono - changes number of channels in outputFrames_
+        // subclasses should call in constructor to determine channel output
+        virtual void setIsStereoOutput( bool stereo );
+        
+      protected:
+        
+        // override point for defining generator behavior
+        // subclasses should implment to fill frames with new data
+        virtual void computeOutput( const SynthesisContext_ &context ) = 0;
 
-      
-      bool            isStereoOutput_;
-      TonicFrames     outputFrames_;
-      unsigned long   lastFrameIndex_;
+        
+        bool            isStereoOutput_;
+        TonicFrames     outputFrames_;
+        unsigned long   lastFrameIndex_;
       
     };
     
@@ -50,7 +50,7 @@ namespace Tonic {
       
       // check context to see if we need new frames
       if (context.forceNewOutput || lastFrameIndex_ != context.elapsedFrames){
-        computeSynthesisBlock(context);
+        computeOutput(context);
         lastFrameIndex_ = context.elapsedFrames;
       }
     
@@ -62,43 +62,45 @@ namespace Tonic {
     /////////////////////
 
     class PassThroughGenerator_ : public Tonic_::Generator_{
-    public:
-      void computeSynthesisBlock( const SynthesisContext_ &context ) {};
+      public:
+        void computeOutput( const SynthesisContext_ &context ) {};
     };
 
   }
 
+  // ----
   
   class Generator : public TonicSmartPointer<Tonic_::Generator_>{
 
-  public:
+    public:
     
-    Generator(Tonic_::Generator_ * gen = NULL) : TonicSmartPointer<Tonic_::Generator_>(gen) {}
+      Generator(Tonic_::Generator_ * gen = NULL) : TonicSmartPointer<Tonic_::Generator_>(gen) {}
     
-    inline bool isStereoOutput(){
-      return obj->isStereoOutput();
-    }
-    
-    virtual void tick(TonicFrames& frames, const Tonic_::SynthesisContext_ & context){
-      obj->tick(frames, context);
-    }
+      inline bool isStereoOutput(){
+        return obj->isStereoOutput();
+      }
+      
+      virtual void tick(TonicFrames& frames, const Tonic_::SynthesisContext_ & context){
+        obj->tick(frames, context);
+      }
 
   };
   
+  // ----
+  
   template<class GenType>
   class TemplatedGenerator : public Generator{
-  protected:
-    GenType* gen(){
-      return static_cast<GenType*>(obj);
-    }
-  public:
-    TemplatedGenerator() : Generator(new GenType) {}
+    protected:
+      GenType* gen(){
+        return static_cast<GenType*>(obj);
+      }
+    public:
+      TemplatedGenerator() : Generator(new GenType) {}
   };
   
-  class PassThroughGenerator : public TemplatedGenerator<Tonic_::PassThroughGenerator_>{
-  public:
+  // ----
   
-  };
+  class PassThroughGenerator : public TemplatedGenerator<Tonic_::PassThroughGenerator_> {};
   
 }
 

@@ -34,7 +34,7 @@ namespace Tonic {
       ControlGenerator lengthGen_;
       ControlGenerator valueGen_;
       
-      void computeSynthesisBlock( const SynthesisContext_ & context );
+      void computeOutput( const SynthesisContext_ & context );
       
     public:
       RampedValue_();
@@ -51,7 +51,7 @@ namespace Tonic {
   
     };
     
-    inline void RampedValue_::computeSynthesisBlock( const SynthesisContext_ & context ){
+    inline void RampedValue_::computeOutput( const SynthesisContext_ & context ){
           
       // First set the value, if necessary (abort ramp, go immediately to value)
       ControlGeneratorOutput valueOutput = valueGen_.tick(context);
@@ -102,7 +102,7 @@ namespace Tonic {
           
             #ifdef TONIC_DEBUG
             if(*fdata != *fdata){
-              Tonic::error("RampedValue_::computeSynthesisBlock NaN detected.\n");
+              Tonic::error("RampedValue_::computeOutput NaN detected.\n");
             }
             #endif
           
@@ -136,7 +136,7 @@ namespace Tonic {
           
             #ifdef TONIC_DEBUG
             if(*fdata != *fdata){
-              Tonic::error("RampedValue_::computeSynthesisBlock NaN detected.\n");
+              Tonic::error("RampedValue_::computeOutput NaN detected.\n");
             }
             #endif
           
@@ -155,7 +155,7 @@ namespace Tonic {
       
       #ifdef TONIC_DEBUG
       if(*fdata != *fdata){
-        Tonic::error("RampedValue_::computeSynthesisBlock NaN detected.\n");
+        Tonic::error("RampedValue_::computeOutput NaN detected.\n");
       }
       #endif
       

@@ -126,7 +126,7 @@ namespace Tonic {
       
         void updateDelayTimes(const SynthesisContext_ & context);
             
-        void computeSynthesisBlock( const SynthesisContext_ &context );
+        void computeOutput( const SynthesisContext_ &context );
 
       public:
       
@@ -148,7 +148,7 @@ namespace Tonic {
       
     };
     
-    inline void Reverb_::computeSynthesisBlock(const SynthesisContext_ &context){
+    inline void Reverb_::computeOutput(const SynthesisContext_ &context){
       
       updateDelayTimes(context);
       
