@@ -51,7 +51,7 @@ namespace Tonic {
       gen()->setPulseLengthGen(ControlValue(length));
     }
     
-    createControlGeneratorSetters(ControlPulse, length, setPulseLengthGen);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlPulse, length, setPulseLengthGen);
     
   };
 }

@@ -48,7 +48,7 @@ namespace Tonic {
       gen()->setBPMGen(ControlValue(bpm));
     }
     
-    createControlGeneratorSetters(ControlMetro, bpm, setBPMGen);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlMetro, bpm, setBPMGen);
   };
 }
 

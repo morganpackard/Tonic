@@ -42,8 +42,8 @@ namespace Tonic {
   class ControlSwitcher : public TemplatedControlGenerator<Tonic_::ControlSwitcher_>{
     
   public:
-    createControlGeneratorSetters(ControlSwitcher, addInput, addInput);
-    createControlGeneratorSetters(ControlSwitcher, inputIndex, setInputIndex);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlSwitcher, addInput, addInput);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlSwitcher, inputIndex, setInputIndex);
 
   };
 }

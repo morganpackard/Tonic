@@ -51,11 +51,11 @@ namespace Tonic {
     
   public:
   
-  createControlGeneratorSetters(ControlStepper, start, setStart);
-  createControlGeneratorSetters(ControlStepper, end, setEnd);
-  createControlGeneratorSetters(ControlStepper, step, setStep);
-  createControlGeneratorSetters(ControlStepper, trigger, setTigger);
-  createControlGeneratorSetters(ControlStepper, bidirectional, setBidirectional);
+  TONIC_CONTROL_GENERATOR_SETTERS(ControlStepper, start, setStart);
+  TONIC_CONTROL_GENERATOR_SETTERS(ControlStepper, end, setEnd);
+  TONIC_CONTROL_GENERATOR_SETTERS(ControlStepper, step, setStep);
+  TONIC_CONTROL_GENERATOR_SETTERS(ControlStepper, trigger, setTigger);
+  TONIC_CONTROL_GENERATOR_SETTERS(ControlStepper, bidirectional, setBidirectional);
 
   };
 }

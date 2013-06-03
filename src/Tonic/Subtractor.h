@@ -55,8 +55,8 @@ namespace Tonic {
     
   public:
   
-    createGeneratorSetters(Subtractor, left, setLeft);
-    createGeneratorSetters(Subtractor, right, setRight);
+    TONIC_GENERATOR_SETTERS(Subtractor, left, setLeft);
+    TONIC_GENERATOR_SETTERS(Subtractor, right, setRight);
 
   };
   

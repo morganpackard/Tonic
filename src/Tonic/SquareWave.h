@@ -22,7 +22,7 @@ namespace Tonic {
       gen()->setPwmGenerator(FixedValue(0.5f));
     }
     
-    createGeneratorSetters(SquareWave, freq, setFrequencyGenerator);
+    TONIC_GENERATOR_SETTERS(SquareWave, freq, setFrequencyGenerator);
     
   };
 

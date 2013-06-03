@@ -22,7 +22,7 @@ namespace Tonic {
     
     SineWave();
     
-    createGeneratorSetters(SineWave, freq, setFrequency)
+    TONIC_GENERATOR_SETTERS(SineWave, freq, setFrequency)
 
   };
 }

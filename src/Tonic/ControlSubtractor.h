@@ -42,8 +42,8 @@ namespace Tonic {
     
   public:
   
-    createControlGeneratorSetters(ControlSubtractor, left, setLeft);
-    createControlGeneratorSetters(ControlSubtractor, right, setRight);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlSubtractor, left, setLeft);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlSubtractor, right, setRight);
 
   };
 

@@ -56,7 +56,7 @@ namespace Tonic {
     
     public:
       // pan is a -1 to 1 value
-      createControlGeneratorSetters(MonoToStereoPanner, pan, setPan);
+      TONIC_CONTROL_GENERATOR_SETTERS(MonoToStereoPanner, pan, setPan);
 
   };
   

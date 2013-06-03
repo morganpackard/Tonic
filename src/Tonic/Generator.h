@@ -107,7 +107,7 @@ namespace Tonic {
 
 #include "FixedValue.h"
 
-#define createGeneratorSetters(generatorClassName, methodNameInGenerator, methodNameInGenerator_) \
+#define TONIC_GENERATOR_SETTERS(generatorClassName, methodNameInGenerator, methodNameInGenerator_) \
                                                                                         \
                                                                                         \
   generatorClassName& methodNameInGenerator(Generator arg){                             \

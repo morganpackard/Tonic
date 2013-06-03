@@ -61,7 +61,7 @@ namespace Tonic {
   public:
     
     ControlDelay(float maxDelayTime = 1.0f);
-    createControlGeneratorSetters(ControlDelay, delayTime, setDelayTimeGen);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlDelay, delayTime, setDelayTimeGen);
     
   };
 }

@@ -40,8 +40,8 @@ namespace Tonic {
     
   public:
   
-    createControlGeneratorSetters(ControlCounter, trigger, setTrigger);
-    createControlGeneratorSetters(ControlCounter, end, setEnd);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlCounter, trigger, setTrigger);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlCounter, end, setEnd);
 
   };
 }
