@@ -23,8 +23,8 @@ namespace Tonic {
     {
       public:
         
-        BaseGenerator_();
-        virtual ~BaseGenerator_();
+        BaseGenerator_() : lastFrameIndex_(0), initialized_(false) {}
+        virtual ~BaseGenerator_() {};
       
         void setTonicContext( const TonicContext_ & context ) { context_ = context; }
       
@@ -45,8 +45,9 @@ namespace Tonic {
         // -------------------------------------
 
         TonicContext_                 context_;
-        unsigned long                     lastFrameIndex_;
-        
+        unsigned long                 lastFrameIndex_;
+        bool                          initialized_;
+      
     };
     
   }

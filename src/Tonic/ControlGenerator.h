@@ -34,9 +34,6 @@ namespace Tonic {
         // Pass in a pointer to a TonicFloat to return a value. Some generators may not care about value.
         virtual ControlGeneratorOutput tick( const TonicContext_ & context );
         
-        // Used for initializing other generators (see smoothed() method for example)
-        virtual ControlGeneratorOutput initialOutput();
-        
       protected:
         
         ControlGeneratorOutput  output_;
@@ -45,9 +42,10 @@ namespace Tonic {
       
       inline ControlGeneratorOutput ControlGenerator_::tick(const TonicContext_ & context){
         
-        if (context.forceNewOutput || lastFrameIndex_ != context.elapsedFrames){
-          lastFrameIndex_ = context.elapsedFrames;
+        if (context.forceNewOutput || !initialized_ || lastFrameIndex_ != context.elapsedFrames){
           computeOutput(context);
+          lastFrameIndex_ = context.elapsedFrames;
+          initialized_ = true;
         }
         
 #ifdef TONIC_DEBUG

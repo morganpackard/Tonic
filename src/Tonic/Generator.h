@@ -47,9 +47,10 @@ namespace Tonic {
     inline void Generator_::tick(TonicFrames &frames, const TonicContext_ &context ){
       
       // check context to see if we need new frames
-      if (context.forceNewOutput || lastFrameIndex_ != context.elapsedFrames){
+      if (context.forceNewOutput || !initialized_ || lastFrameIndex_ != context.elapsedFrames){
         computeOutput(context);
         lastFrameIndex_ = context.elapsedFrames;
+        initialized_ = true;
       }
     
       // copy synthesis block to frames passed in

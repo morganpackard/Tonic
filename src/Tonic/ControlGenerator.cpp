@@ -14,17 +14,9 @@
 #include <cmath>
 
 namespace Tonic{
-  namespace Tonic_{
-    
-    ControlGeneratorOutput ControlGenerator_::initialOutput(){
-      // return output from passing in dummy context
-      // TODO: Fix
-      return output_;//tick(Tonic::DummyContext);
-    }
-    
-  }
+
   RampedValue ControlGenerator::smoothed(float length){
-    return RampedValue( static_cast<Tonic_::ControlGenerator_*>(obj)->initialOutput().value, length ).target(*this);
+    return RampedValue().length(length).target(*this);
   }
   
 }

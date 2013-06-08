@@ -109,8 +109,6 @@
 		01C65FF517372A5F003B2661 /* Effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01C65FF1173723C6003B2661 /* Effect.cpp */; };
 		01C65FF617372CD3003B2661 /* FilterUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01C65FF317372407003B2661 /* FilterUtils.cpp */; };
 		01F7273E1715225500EBB4BB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01F7273D1715225500EBB4BB /* Accelerate.framework */; };
-		9A35285517583E5B0009F78B /* BaseGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A35285317583E5B0009F78B /* BaseGenerator.cpp */; };
-		9A35285617583E5B0009F78B /* BaseGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A35285317583E5B0009F78B /* BaseGenerator.cpp */; };
 		9A35285717583E5B0009F78B /* BaseGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A35285417583E5B0009F78B /* BaseGenerator.h */; };
 		9A5FB720175928FC007A2F31 /* ControlComparison.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FB71E175928FC007A2F31 /* ControlComparison.cpp */; };
 		9A5FB721175928FC007A2F31 /* ControlComparison.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FB71E175928FC007A2F31 /* ControlComparison.cpp */; };
@@ -212,7 +210,6 @@
 		01C65FF317372407003B2661 /* FilterUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FilterUtils.cpp; sourceTree = "<group>"; };
 		01F72690171520F900EBB4BB /* libTonic-OSX-Debug.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libTonic-OSX-Debug.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		01F7273D1715225500EBB4BB /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
-		9A35285317583E5B0009F78B /* BaseGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseGenerator.cpp; sourceTree = "<group>"; };
 		9A35285417583E5B0009F78B /* BaseGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseGenerator.h; sourceTree = "<group>"; };
 		9A5FB71E175928FC007A2F31 /* ControlComparison.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ControlComparison.cpp; sourceTree = "<group>"; };
 		9A5FB71F175928FC007A2F31 /* ControlComparison.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlComparison.h; sourceTree = "<group>"; };
@@ -263,7 +260,6 @@
 				0183D0031735D0E6004638EB /* ADSR.h */,
 				0183D0001735D0E6004638EB /* Arithmetic.cpp */,
 				0183D0011735D0E6004638EB /* Arithmetic.h */,
-				9A35285317583E5B0009F78B /* BaseGenerator.cpp */,
 				9A35285417583E5B0009F78B /* BaseGenerator.h */,
 				0183D0041735D0E6004638EB /* BasicDelay.cpp */,
 				0183D0051735D0E6004638EB /* BasicDelay.h */,
@@ -528,7 +524,6 @@
 				9AF6A72F174AFCF900C70173 /* RingBuffer.cpp in Sources */,
 				9A5FB720175928FC007A2F31 /* ControlComparison.cpp in Sources */,
 				9AE5AA0217601CB4001F3E60 /* ControlTrigger.cpp in Sources */,
-				9A35285517583E5B0009F78B /* BaseGenerator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,7 +569,6 @@
 				9AF6A730174AFCF900C70173 /* RingBuffer.cpp in Sources */,
 				9A5FB721175928FC007A2F31 /* ControlComparison.cpp in Sources */,
 				9AE5AA0317601CB4001F3E60 /* ControlTrigger.cpp in Sources */,
-				9A35285617583E5B0009F78B /* BaseGenerator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
