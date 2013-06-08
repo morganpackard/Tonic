@@ -299,7 +299,7 @@ namespace Tonic {
     
     TableLookupOsc & setLookupTable( SampleTable lookupTable );
     
-    createGeneratorSetters(TableLookupOsc, freq, setFrequency);
+    TONIC_GENERATOR_SETTERS(TableLookupOsc, freq, setFrequency);
   };
   
   
@@ -313,7 +313,7 @@ namespace Tonic {
     SineWave();
     
     //! Frequency of the sine wave
-    createGeneratorSetters(SineWave, freq, setFrequency)
+    TONIC_GENERATOR_SETTERS(SineWave, freq, setFrequency)
     
   };
   
@@ -329,10 +329,10 @@ namespace Tonic {
   public:
     
     //! Set the frequency of the waveform
-    createGeneratorSetters(RectWave, freq, setFrequencyGenerator);
+    TONIC_GENERATOR_SETTERS(RectWave, freq, setFrequencyGenerator);
     
     //! Set the pulse width of the rectangle. Input should be clipped between 0-1
-    createGeneratorSetters(RectWave, pwm, setPwmGenerator);
+    TONIC_GENERATOR_SETTERS(RectWave, pwm, setPwmGenerator);
     
   };
   
@@ -347,7 +347,7 @@ namespace Tonic {
       gen()->setPwmGenerator(FixedValue(0.5f));
     }
     
-    createGeneratorSetters(SquareWave, freq, setFrequencyGenerator);
+    TONIC_GENERATOR_SETTERS(SquareWave, freq, setFrequencyGenerator);
     
   };
 
@@ -363,7 +363,7 @@ namespace Tonic {
     
   public:
     
-    createGeneratorSetters(SawtoothWave, freq, setFrequencyGenerator);
+    TONIC_GENERATOR_SETTERS(SawtoothWave, freq, setFrequencyGenerator);
     
     //! set whether it's a descending sawtooth (default) or ascending
     SawtoothWave & isAscending(bool ascending){
@@ -383,10 +383,10 @@ namespace Tonic {
       gen()->setSlopeGenerator(FixedValue(0.5f));
     }
     
-    createGeneratorSetters(TriangleWave, freq, setFrequencyGenerator);
+    TONIC_GENERATOR_SETTERS(TriangleWave, freq, setFrequencyGenerator);
     
     //! Set from 0-1 to change slope. At 0, it's a falling saw, at 1, it's a rising saw (defaults to 0.5, triangle)
-    createGeneratorSetters(TriangleWave, slope, setSlopeGenerator);
+    TONIC_GENERATOR_SETTERS(TriangleWave, slope, setSlopeGenerator);
     
   };
   

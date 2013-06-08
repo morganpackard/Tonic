@@ -82,6 +82,6 @@ public:
   }
 };
 
-registerSynth(FilteredNoiseSynth);
+TONIC_REGISTER_SYNTH(FilteredNoiseSynth);
 
 #endif

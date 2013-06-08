@@ -48,6 +48,6 @@ public:
   
 };
 
-registerSynth(FMDroneSynth);
+TONIC_REGISTER_SYNTH(FMDroneSynth);
 
 #endif

@@ -109,7 +109,7 @@ namespace Tonic {
 
 #include "ControlValue.h"
 
-#define createControlGeneratorSetters(generatorClassName, methodNameInGenerator, methodNameInGenerator_)\
+#define TONIC_CONTROL_GENERATOR_SETTERS(generatorClassName, methodNameInGenerator, methodNameInGenerator_)\
 \
 generatorClassName& methodNameInGenerator(float arg){                              \
 return methodNameInGenerator( ControlValue(arg) );                                 \

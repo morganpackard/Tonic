@@ -231,41 +231,41 @@ namespace Tonic {
     public:
         
       //! Initial delay before passing through reverb
-      createControlGeneratorSetters(Reverb, preDelayTime, setPreDelayTimeCtrlGen);
+      TONIC_CONTROL_GENERATOR_SETTERS(Reverb, preDelayTime, setPreDelayTimeCtrlGen);
     
       //! Non-zero value will disable input filtering
-      createControlGeneratorSetters(Reverb, bypassInputFilter, setInputFiltBypassCtrlGen);
+      TONIC_CONTROL_GENERATOR_SETTERS(Reverb, bypassInputFilter, setInputFiltBypassCtrlGen);
     
       //! Value in Hz of cutoff for input LPF
-      createControlGeneratorSetters(Reverb, inputLPFCutoff, setInputLPFCutoffCtrlGen);
+      TONIC_CONTROL_GENERATOR_SETTERS(Reverb, inputLPFCutoff, setInputLPFCutoffCtrlGen);
     
       //! Value in Hz of cutoff for input HPF
-      createControlGeneratorSetters(Reverb, inputHPFCutoff, setInputHPFCutoffCtrlGen);
+      TONIC_CONTROL_GENERATOR_SETTERS(Reverb, inputHPFCutoff, setInputHPFCutoffCtrlGen);
     
       //! Value 0-1, affects number of early reflections
-      createControlGeneratorSetters(Reverb, density, setDensityCtrlGen);
+      TONIC_CONTROL_GENERATOR_SETTERS(Reverb, density, setDensityCtrlGen);
     
       //! Value 0-1, affects distribution of early reflections.
       /*!
           0 is perfectly square room
           1 is long, narrow room
       */
-      createControlGeneratorSetters(Reverb, roomShape, setRoomShapeCtrlGen);
+      TONIC_CONTROL_GENERATOR_SETTERS(Reverb, roomShape, setRoomShapeCtrlGen);
     
       //! Value 0-1, affects spacing of early reflections
-      createControlGeneratorSetters(Reverb, roomSize, setRoomSizeCtrlGen);
+      TONIC_CONTROL_GENERATOR_SETTERS(Reverb, roomSize, setRoomSizeCtrlGen);
     
       //! Value in seconds of overall decay time
-      createControlGeneratorSetters(Reverb, decayTime, setDecayTimeCtrlGen);
+      TONIC_CONTROL_GENERATOR_SETTERS(Reverb, decayTime, setDecayTimeCtrlGen);
     
       //! Value in Hz of cutoff of decay LPF
-      createControlGeneratorSetters(Reverb, decayLPFCutoff, setDecayLPFCtrlGen);
+      TONIC_CONTROL_GENERATOR_SETTERS(Reverb, decayLPFCutoff, setDecayLPFCtrlGen);
     
       //! Value in Hz of cutoff of decay HPF
-      createControlGeneratorSetters(Reverb, decayHPFCutoff, setDecayHPFCtrlGen);
+      TONIC_CONTROL_GENERATOR_SETTERS(Reverb, decayHPFCutoff, setDecayHPFCtrlGen);
 
       //! Value 0-1 for stereo width
-      createControlGeneratorSetters(Reverb, stereoWidth, setStereoWidthCtrlGen);
+      TONIC_CONTROL_GENERATOR_SETTERS(Reverb, stereoWidth, setStereoWidthCtrlGen);
     
   };
 }

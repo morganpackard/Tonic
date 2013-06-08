@@ -210,12 +210,12 @@ namespace Tonic {
       this->gen()->setIsStereo(isStereo);
     }
     
-    createControlGeneratorSetters(Compressor, attack, setAttack);
-    createControlGeneratorSetters(Compressor, release, setRelease);
-    createControlGeneratorSetters(Compressor, threshold, setThreshold); // LINEAR - use dBToLin to convert from dB
-    createControlGeneratorSetters(Compressor, ratio, setRatio);
-    createControlGeneratorSetters(Compressor, lookahead, setLookahead);
-    createControlGeneratorSetters(Compressor, makeupGain, setMakeupGain);
+    TONIC_CONTROL_GENERATOR_SETTERS(Compressor, attack, setAttack);
+    TONIC_CONTROL_GENERATOR_SETTERS(Compressor, release, setRelease);
+    TONIC_CONTROL_GENERATOR_SETTERS(Compressor, threshold, setThreshold); // LINEAR - use dBToLin to convert from dB
+    TONIC_CONTROL_GENERATOR_SETTERS(Compressor, ratio, setRatio);
+    TONIC_CONTROL_GENERATOR_SETTERS(Compressor, lookahead, setLookahead);
+    TONIC_CONTROL_GENERATOR_SETTERS(Compressor, makeupGain, setMakeupGain);
 
 
     // TODO: option for RMS
@@ -234,10 +234,10 @@ namespace Tonic {
       this->gen()->setIsStereo(isStereo);
     }
     
-    createControlGeneratorSetters(Limiter, release, setRelease);
-    createControlGeneratorSetters(Limiter, threshold, setThreshold);
-    createControlGeneratorSetters(Limiter, lookahead, setLookahead);
-    createControlGeneratorSetters(Limiter, makeupGain, setMakeupGain);
+    TONIC_CONTROL_GENERATOR_SETTERS(Limiter, release, setRelease);
+    TONIC_CONTROL_GENERATOR_SETTERS(Limiter, threshold, setThreshold);
+    TONIC_CONTROL_GENERATOR_SETTERS(Limiter, lookahead, setLookahead);
+    TONIC_CONTROL_GENERATOR_SETTERS(Limiter, makeupGain, setMakeupGain);
     
   };
 

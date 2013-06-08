@@ -221,7 +221,7 @@ namespace Tonic {
       gen()->setBPMGen(ControlValue(bpm));
     }
     
-    createControlGeneratorSetters(ControlMetro, bpm, setBPMGen);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlMetro, bpm, setBPMGen);
   };
   
   // ------------------------------------------------------------
@@ -231,8 +231,8 @@ namespace Tonic {
   {
   public:
     
-    createControlGeneratorSetters(ControlMetroDivider, divisions, setDivisionsGen);
-    createControlGeneratorSetters(ControlMetroDivider, offset, setOffsetGen);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlMetroDivider, divisions, setDivisionsGen);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlMetroDivider, offset, setOffsetGen);
     
   };
   
@@ -246,7 +246,7 @@ namespace Tonic {
       gen()->setPulseLengthGen(ControlValue(length));
     }
     
-    createControlGeneratorSetters(ControlPulse, length, setPulseLengthGen);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlPulse, length, setPulseLengthGen);
     
   };
   
@@ -257,7 +257,7 @@ namespace Tonic {
   public:
     
     ControlDelay(float maxDelayTime = 1.0f);
-    createControlGeneratorSetters(ControlDelay, delayTime, setDelayTimeGen);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlDelay, delayTime, setDelayTimeGen);
     
   };
 }

@@ -47,6 +47,6 @@ public:
 
 };
 
-registerSynth(SineSumSynth);
+TONIC_REGISTER_SYNTH(SineSumSynth);
 
 #endif

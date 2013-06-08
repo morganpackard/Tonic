@@ -33,7 +33,7 @@ public:
   }
 };
 
-registerSynth(LFNoiseTestSynth);
+TONIC_REGISTER_SYNTH(LFNoiseTestSynth);
 
 
 #endif

@@ -209,8 +209,8 @@ namespace Tonic {
     
     ControlSwitcher & setFloatInputs( vector<float> inputs );
     
-    createControlGeneratorSetters(ControlSwitcher, addInput, addInput);
-    createControlGeneratorSetters(ControlSwitcher, inputIndex, setInputIndex);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlSwitcher, addInput, addInput);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlSwitcher, inputIndex, setInputIndex);
 
   };
   
@@ -224,11 +224,11 @@ namespace Tonic {
     
   public:
     
-    createControlGeneratorSetters(ControlStepper, start, setStart);
-    createControlGeneratorSetters(ControlStepper, end, setEnd);
-    createControlGeneratorSetters(ControlStepper, step, setStep);
-    createControlGeneratorSetters(ControlStepper, trigger, setTigger);
-    createControlGeneratorSetters(ControlStepper, bidirectional, setBidirectional);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlStepper, start, setStart);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlStepper, end, setEnd);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlStepper, step, setStep);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlStepper, trigger, setTigger);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlStepper, bidirectional, setBidirectional);
     
   };
   
@@ -239,8 +239,8 @@ namespace Tonic {
     
   public:
     
-    createControlGeneratorSetters(ControlCounter, trigger, setTrigger);
-    createControlGeneratorSetters(ControlCounter, end, setEnd);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlCounter, trigger, setTrigger);
+    TONIC_CONTROL_GENERATOR_SETTERS(ControlCounter, end, setEnd);
     
   };
   
