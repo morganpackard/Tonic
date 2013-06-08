@@ -82,7 +82,7 @@ namespace Tonic {
     
     // Overridden tick - pre-ticks input to fill dryFrames_.
     // subclasses don't need to tick input - dryFrames_ contains "dry" input by the time
-    // computeSynthesisBlock() is called
+    // computeOutput() is called
     inline void Effect_::tick(TonicFrames &frames, const SynthesisContext_ &context ){
       
       // check context to see if we need new frames
@@ -91,7 +91,7 @@ namespace Tonic {
         // get dry input frames
         input_.tick(dryFrames_, context);
         
-        computeSynthesisBlock(context);
+        computeOutput(context);
 
         // bypass processing - still need to compute block so all generators stay in sync
         bool bypass = bypassGen_.tick(context).value != 0.f;
@@ -127,7 +127,7 @@ namespace Tonic {
         // Do not check context here, assume each call should produce new output.
         
         dryFrames_.copy(inFrames);
-        computeSynthesisBlock(context);
+        computeOutput(context);
         
         // bypass processing - still need to compute block so all generators stay in sync
         bool bypass = bypassGen_.tick(context).value != 0.f;

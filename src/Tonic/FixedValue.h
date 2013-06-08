@@ -25,7 +25,7 @@ namespace Tonic {
       
       ControlGenerator valueGen;
       
-      void computeSynthesisBlock( const SynthesisContext_ & context );
+      void computeOutput( const SynthesisContext_ & context );
 
         
     public:
@@ -38,7 +38,7 @@ namespace Tonic {
 
     };
     
-    inline void FixedValue_::computeSynthesisBlock( const SynthesisContext_ & context ){
+    inline void FixedValue_::computeOutput( const SynthesisContext_ & context ){
       
       float* buffStart = &outputFrames_[0];
       

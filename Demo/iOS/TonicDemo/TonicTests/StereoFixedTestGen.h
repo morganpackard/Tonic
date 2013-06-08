@@ -22,7 +22,7 @@ namespace Tonic {
       
     protected:
       
-      void computeSynthesisBlock( const SynthesisContext_ & context);
+      void computeOutput( const SynthesisContext_ & context);
       
       float lVal_;
       float rVal_;
@@ -36,7 +36,7 @@ namespace Tonic {
       
     };
     
-    inline void StereoFixedTestGen_::computeSynthesisBlock( const SynthesisContext_ & context)
+    inline void StereoFixedTestGen_::computeOutput( const SynthesisContext_ & context)
     {
       float* buffStart = &outputFrames_[0];
       

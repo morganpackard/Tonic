@@ -27,7 +27,7 @@ namespace Tonic {
       
       std::vector<Generator> inputs;
       TonicFrames workSpace;
-      void computeSynthesisBlock( const SynthesisContext_ &context );
+      void computeOutput( const SynthesisContext_ &context );
 
     public:
       
@@ -40,7 +40,7 @@ namespace Tonic {
             
     };
     
-    inline void Adder_::computeSynthesisBlock( const SynthesisContext_ &context ){
+    inline void Adder_::computeOutput( const SynthesisContext_ &context ){
       
       TonicFloat *framesData =  &outputFrames_[0];
       
@@ -133,7 +133,7 @@ namespace Tonic {
       Generator right;
       TonicFrames workSpace;
       
-      void computeSynthesisBlock( const SynthesisContext_ &context );
+      void computeOutput( const SynthesisContext_ &context );
       
     public:
       
@@ -149,7 +149,7 @@ namespace Tonic {
       
     };
     
-    inline void Subtractor_::computeSynthesisBlock(const SynthesisContext_ &context){
+    inline void Subtractor_::computeOutput(const SynthesisContext_ &context){
       left.tick(outputFrames_, context);
       right.tick(workSpace, context);
       outputFrames_ -= workSpace;
@@ -210,7 +210,7 @@ namespace Tonic {
       TonicFrames workSpace;
       vector<Generator> inputs;
       
-      void computeSynthesisBlock( const SynthesisContext_ & context );
+      void computeOutput( const SynthesisContext_ & context );
       
     public:
 
@@ -223,7 +223,7 @@ namespace Tonic {
     };
     
     
-    inline void Multiplier_::computeSynthesisBlock( const SynthesisContext_ & context ){
+    inline void Multiplier_::computeOutput( const SynthesisContext_ & context ){
       
       memset(&outputFrames_[0], 0, sizeof(TonicFloat) * outputFrames_.size());
       
@@ -306,7 +306,7 @@ namespace Tonic {
       Generator right;
       TonicFrames workSpace;
       
-      void computeSynthesisBlock( const SynthesisContext_ &context );
+      void computeOutput( const SynthesisContext_ &context );
       
     public:
 
@@ -322,7 +322,7 @@ namespace Tonic {
       
     };
     
-    inline void Divider_::computeSynthesisBlock(const SynthesisContext_ &context){
+    inline void Divider_::computeOutput(const SynthesisContext_ &context){
       left.tick(outputFrames_, context);
       right.tick(workSpace, context);
       outputFrames_ /= workSpace;

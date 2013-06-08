@@ -27,7 +27,7 @@ namespace Tonic{
       int           mCounter;
       float         mLevel;
       
-      void computeSynthesisBlock( const SynthesisContext_ &context );
+      void computeOutput( const SynthesisContext_ &context );
       
     public:
       
@@ -37,7 +37,7 @@ namespace Tonic{
     
     };
     
-    inline void LFNoise_::computeSynthesisBlock( const SynthesisContext_ &context ){
+    inline void LFNoise_::computeOutput( const SynthesisContext_ &context ){
       int remain = outputFrames_.frames();
       TonicFloat* out = &outputFrames_[0];
       do{
