@@ -27,7 +27,9 @@ namespace Tonic {
     class ControlGenerator_ : public BaseGenerator_ {
       
       public:
-        
+      
+        ControlGenerator_ * copy() { return NULL; }
+      
         // Only override tick if you need custom reuse behavior
         // Pass in a pointer to a TonicFloat to return a value. Some generators may not care about value.
         virtual ControlGeneratorOutput tick( const SynthesisContext_ & context );

@@ -14,19 +14,21 @@
 
 #include "BaseGenerator.h"
 #include "TonicFrames.h"
-#include <cmath>
+
 namespace Tonic {
-
+  
   namespace Tonic_{
-
+    
     class Generator_ : public BaseGenerator_ {
       
       public:
-        
+      
         Generator_();
-        
+      
+        Generator_ * copy() { return NULL; }
+      
         virtual void tick( TonicFrames& frames, const SynthesisContext_ &context );
-        
+      
         bool isStereoOutput(){ return isStereoOutput_; };
         
         // set stereo/mono - changes number of channels in outputFrames_
@@ -95,7 +97,6 @@ namespace Tonic {
                                                                                         \
   generatorClassName& methodNameInGenerator(Generator arg){                             \
     this->gen()->methodNameInGenerator_(arg);                                           \
-    this->gen()->registerInputGenerator(arg, #methodNameInGenerator);                   \
     return static_cast<generatorClassName&>(*this);                                     \
   }                                                                                     \
                                                                                         \
@@ -106,7 +107,5 @@ namespace Tonic {
   generatorClassName& methodNameInGenerator(ControlGenerator arg){                      \
     return methodNameInGenerator(  FixedValue().setValue(arg) );                        \
   }
-
-
 
 #endif /* defined(__Tonic__Generator__) */

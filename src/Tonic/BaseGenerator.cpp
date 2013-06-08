@@ -16,10 +16,6 @@ namespace Tonic {
     
     BaseGenerator_::~BaseGenerator_() {}
     
-    void BaseGenerator_::registerInputGenerator(BaseGenerator inputGen, string name){
-      inputGenerators_[name] = inputGen;
-    }
-    
   }
 
 }

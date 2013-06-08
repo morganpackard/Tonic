@@ -13,9 +13,6 @@
 
 namespace Tonic {
   
-  // forward declaration
-  class BaseGenerator;
-  
   namespace Tonic_ {
     
     //! Abstract base class for Generator and ControlGenerator
@@ -31,14 +28,23 @@ namespace Tonic {
       
         void setSynthesisContext( const SynthesisContext_ & context ) { context_ = context; }
       
-        void registerInputGenerator( BaseGenerator inputGen, string name );
+        virtual BaseGenerator_ * copy() = 0; // implemented one class up (Generator or ControlGenerator)
+      
+      // ---- Subclasses should implement -----
+      
+        virtual void reset() {}
+      
+        // -------------------------------------
       
       protected:
-        
-        virtual void computeOutput( const SynthesisContext_ & context ) = 0;
+      
+        // ---- Subclasses should implement -----
+      
+        virtual void computeOutput( const SynthesisContext_ & context ) {};
+      
+        // -------------------------------------
 
         SynthesisContext_                 context_;
-        std::map<string, BaseGenerator>   inputGenerators_;
         unsigned long                     lastFrameIndex_;
         
     };
@@ -54,12 +60,10 @@ namespace Tonic {
       void setSynthesisContext( const Tonic_::SynthesisContext_ & context ){
         obj->setSynthesisContext(context);
       }
-    
-      void registerInputGenerator( BaseGenerator inputGen, string name ){
-        obj->registerInputGenerator(inputGen, name);
-      }
   };
-  
+    
 }
+
+
 
 #endif /* defined(__Tonic__BaseGenerator__) */
