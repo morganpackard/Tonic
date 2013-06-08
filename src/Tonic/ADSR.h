@@ -61,7 +61,7 @@ namespace Tonic {
       ADSRState state;
       void switchState(ADSRState newState);
       
-      void computeOutput( const SynthesisContext_ &context );
+      void computeOutput( const TonicContext_ &context );
       
     public:
       
@@ -85,7 +85,7 @@ namespace Tonic {
       
     };
     
-    inline void ADSR_::computeOutput(const SynthesisContext_ &context){
+    inline void ADSR_::computeOutput(const TonicContext_ &context){
       
       ControlGeneratorOutput triggerOutput = mTrigger.tick(context);
       

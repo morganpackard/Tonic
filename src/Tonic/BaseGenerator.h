@@ -26,7 +26,7 @@ namespace Tonic {
         BaseGenerator_();
         virtual ~BaseGenerator_();
       
-        void setSynthesisContext( const SynthesisContext_ & context ) { context_ = context; }
+        void setTonicContext( const TonicContext_ & context ) { context_ = context; }
       
         virtual BaseGenerator_ * copy() = 0; // implemented one class up (Generator or ControlGenerator)
       
@@ -40,11 +40,11 @@ namespace Tonic {
       
         // ---- Subclasses should implement -----
       
-        virtual void computeOutput( const SynthesisContext_ & context ) {};
+        virtual void computeOutput( const TonicContext_ & context ) {};
       
         // -------------------------------------
 
-        SynthesisContext_                 context_;
+        TonicContext_                 context_;
         unsigned long                     lastFrameIndex_;
         
     };
@@ -57,8 +57,8 @@ namespace Tonic {
     
       BaseGenerator( Tonic_::BaseGenerator_ * gen = NULL ) : TonicSmartPointer<Tonic_::BaseGenerator_>(gen) {};
     
-      void setSynthesisContext( const Tonic_::SynthesisContext_ & context ){
-        obj->setSynthesisContext(context);
+      void setTonicContext( const Tonic_::TonicContext_ & context ){
+        obj->setTonicContext(context);
       }
   };
     

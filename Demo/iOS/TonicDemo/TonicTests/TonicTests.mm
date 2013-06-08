@@ -21,7 +21,7 @@ using namespace Tonic;
 @interface TonicTests ()  
 {
   TonicFrames testFrames;
-  Tonic_::SynthesisContext_ testContext;
+  Tonic_::TonicContext_ testContext;
   
   float * stereoOutBuffer;
   float * monoOutBuffer;
@@ -329,7 +329,7 @@ using namespace Tonic;
     ControlTrigger trig;
     ControlStepper stepper;
     stepper = ControlStepper().start(1).end(2).step(1).trigger(trig);
-    Tonic_::SynthesisContext_ context;
+    Tonic_::TonicContext_ context;
     ControlGeneratorOutput result = stepper.tick(context);
     STAssertEquals(result.value, 1.0f, @"ControlStepper did not produce expected output");
   }
@@ -340,7 +340,7 @@ using namespace Tonic;
     ControlStepper stepper;
     stepper = ControlStepper().start(1).end(3).step(1).bidirectional(1).trigger(trig);
 
-    Tonic_::SynthesisContext_ context;
+    Tonic_::TonicContext_ context;
     ControlGeneratorOutput result = stepper.tick(context);
     STAssertEquals(result.value, 1.0f, @"ControlStepper did not produce expected output");
     
@@ -384,7 +384,7 @@ using namespace Tonic;
     ControlStepper stepper;
     stepper = ControlStepper().start(1).end(3).step(1).trigger(trig);
     ADSR env = ADSR(1,1,1,1).trigger(trig);
-    Tonic_::SynthesisContext_ context;
+    Tonic_::TonicContext_ context;
     
     env.tick(testFrames, context);
     ControlGeneratorOutput result = stepper.tick(context);
@@ -402,7 +402,7 @@ using namespace Tonic;
 
 - (void)test202ControlTrigger{
   ControlTrigger trig;
-  Tonic_::SynthesisContext_ context;
+  Tonic_::TonicContext_ context;
   STAssertFalse(trig.tick(context).triggered, @"ControlGenerator did not produce expected output");
   
   trig.trigger();
@@ -415,7 +415,7 @@ using namespace Tonic;
 
   ControlTrigger trig = ControlTrigger();
   ControlRandom random = ControlRandom().min(10).max(20).trigger(trig);
-  Tonic_::SynthesisContext_ context;  
+  Tonic_::TonicContext_ context;  
   STAssertTrue(random.tick(context).value > 0, @"ControlRandom should start out with a value inside its range.");
   
   random.min(1).max(2);
@@ -431,7 +431,7 @@ using namespace Tonic;
 
 -(void)test204ControlMetro{
   ControlMetro metro = ControlMetro().bpm(0.001);
-  Tonic_::SynthesisContext_ context;
+  Tonic_::TonicContext_ context;
   context.tick();
   metro.tick(context);
   context.tick();
@@ -627,19 +627,19 @@ using namespace Tonic;
 -(void)test402ControlGeneratorDivide{
   {
     ControlGenerator gen = ControlValue(10) / ControlValue(5);
-    Tonic_::SynthesisContext_ context;
+    Tonic_::TonicContext_ context;
     STAssertEquals(gen.tick(context).value, 2.f, @"ControlValue(10) / ControlValue(5) failed.");
   }
 
   {
     ControlGenerator gen = 10 / ControlValue(5);
-    Tonic_::SynthesisContext_ context;
+    Tonic_::TonicContext_ context;
     STAssertEquals(gen.tick(context).value, 2.f, @"10 / ControlValue(5) failed.");
   }
 
   {
     ControlGenerator gen = ControlValue(10) / 5;
-    Tonic_::SynthesisContext_ context;
+    Tonic_::TonicContext_ context;
     STAssertEquals(gen.tick(context).value, 2.f, @"ControlValue(10) / 5 failed.");
   }
 
@@ -648,7 +648,7 @@ using namespace Tonic;
 -(void)test403ControlGenDivideByZero{
   ControlValue right = ControlValue(5);
   ControlGenerator gen = ControlValue(10) / right;
-  Tonic_::SynthesisContext_ context;
+  Tonic_::TonicContext_ context;
   gen.tick(context);
   right.value(0);
   
@@ -676,7 +676,7 @@ using namespace Tonic;
 - (void)test405ControlGeneratorComparison {
   
   const int n_iterations = 10;
-  Tonic_::SynthesisContext_ context;
+  Tonic_::TonicContext_ context;
   
   // equals
   for (int i=0; i<n_iterations; i++){

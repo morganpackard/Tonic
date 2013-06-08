@@ -34,7 +34,7 @@ namespace Tonic{
       
     protected:
       
-      Tonic_::SynthesisContext_   synthContext_;
+      Tonic_::TonicContext_   synthContext_;
       
     public:
       
@@ -47,7 +47,7 @@ namespace Tonic{
       
       //! Process a single synthesis vector, output to frames
       /*!
-       tick method without context argument passes down this instance's SynthesisContext_
+       tick method without context argument passes down this instance's TonicContext_
        */
       void tick( TonicFrames& frames );
       

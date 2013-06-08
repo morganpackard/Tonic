@@ -36,13 +36,13 @@ namespace Tonic {
       
     protected:
       
-      void computeOutput( const SynthesisContext_ & context );
+      void computeOutput( const TonicContext_ & context );
       
       vector<ControlGenerator> inputs;
       
     };
     
-    inline void ControlAdder_::computeOutput(const SynthesisContext_ &context){
+    inline void ControlAdder_::computeOutput(const TonicContext_ &context){
       
       output_.triggered = false;
       
@@ -111,7 +111,7 @@ namespace Tonic {
     protected:
       ControlGenerator left;
       ControlGenerator right;
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const TonicContext_ & context);
       
     public:
 
@@ -123,7 +123,7 @@ namespace Tonic {
       }
     };
     
-    inline void ControlSubtractor_::computeOutput(const SynthesisContext_ & context){
+    inline void ControlSubtractor_::computeOutput(const TonicContext_ & context){
       ControlGeneratorOutput leftOut = left.tick(context);
       ControlGeneratorOutput rightOut = right.tick(context);
       if(!leftOut.triggered && !rightOut.triggered){
@@ -184,13 +184,13 @@ namespace Tonic {
       
     protected:
       
-      void computeOutput( const SynthesisContext_ & context );
+      void computeOutput( const TonicContext_ & context );
       
       vector<ControlGenerator> inputs;
       
     };
     
-    inline void ControlMultiplier_::computeOutput(const SynthesisContext_ &context){
+    inline void ControlMultiplier_::computeOutput(const TonicContext_ &context){
       
       output_.triggered = false;
       
@@ -259,7 +259,7 @@ namespace Tonic {
     protected:
       ControlGenerator left;
       ControlGenerator right;
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const TonicContext_ & context);
       
     public:
 
@@ -272,7 +272,7 @@ namespace Tonic {
       
     };
     
-    inline void ControlDivider_::computeOutput(const SynthesisContext_ & context){
+    inline void ControlDivider_::computeOutput(const TonicContext_ & context){
       ControlGeneratorOutput leftOut = left.tick(context);
       ControlGeneratorOutput rightOut = right.tick(context);
       

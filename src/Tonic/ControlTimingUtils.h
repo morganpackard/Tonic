@@ -29,7 +29,7 @@ namespace Tonic {
       
       ControlGenerator bpm_;
       
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const TonicContext_ & context);
           
     public:
 
@@ -39,7 +39,7 @@ namespace Tonic {
       
     };
     
-    inline void ControlMetro_::computeOutput(const SynthesisContext_ & context){
+    inline void ControlMetro_::computeOutput(const TonicContext_ & context){
       
       double sPerBeat = 60.0/max(0.001,bpm_.tick(context).value);
       double delta = context.elapsedTime - lastClickTime_;
@@ -68,7 +68,7 @@ namespace Tonic {
       
     protected:
       
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const TonicContext_ & context);
       
       ControlGenerator divisonsGen_;
       ControlGenerator offsetGen_;
@@ -85,7 +85,7 @@ namespace Tonic {
       
     };
     
-    inline   void ControlMetroDivider_::computeOutput(const SynthesisContext_ & context){
+    inline   void ControlMetroDivider_::computeOutput(const TonicContext_ & context){
       
       offset_ = (unsigned int)(offsetGen_.tick(context).value);
       unsigned int divisions = max(1, divisonsGen_.tick(context).value);
@@ -109,7 +109,7 @@ namespace Tonic {
     class ControlPulse_ : public ControlConditioner_{
       
     protected:
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const TonicContext_ & context);
       
       typedef enum {
         ControlPulseStateOff = 0,
@@ -128,7 +128,7 @@ namespace Tonic {
       
     };
     
-    inline   void ControlPulse_::computeOutput(const SynthesisContext_ & context){
+    inline   void ControlPulse_::computeOutput(const TonicContext_ & context){
       
       ControlGeneratorOutput tickIn = input_.tick(context);
       ControlGeneratorOutput lengthIn = pulseLengthGen_.tick(context);
@@ -170,7 +170,7 @@ namespace Tonic {
       
       ControlGenerator delayTimeCtrlGen_;
       
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const TonicContext_ & context);
       
     public:
       
@@ -182,7 +182,7 @@ namespace Tonic {
       
     };
     
-    inline     void ControlDelay_::computeOutput(const SynthesisContext_ & context){
+    inline     void ControlDelay_::computeOutput(const TonicContext_ & context){
       
       delayLine_[writeHead_] = input_.tick(context);
       

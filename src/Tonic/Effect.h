@@ -61,13 +61,13 @@ namespace Tonic {
       
       // --- Tick methods ---
       
-      virtual void tick(TonicFrames &frames, const SynthesisContext_ &context );
+      virtual void tick(TonicFrames &frames, const TonicContext_ &context );
       
       //! Apply effect directly to passed in frames (output in-place)
       /*!
           DO NOT mix calls to tick() with calls to tickThrough(). Result is undefined.
       */
-      virtual void tickThrough( TonicFrames & inFrames, TonicFrames & outFrames, const SynthesisContext_ & context );
+      virtual void tickThrough( TonicFrames & inFrames, TonicFrames & outFrames, const TonicContext_ & context );
 
     };
     
@@ -83,7 +83,7 @@ namespace Tonic {
     // Overridden tick - pre-ticks input to fill dryFrames_.
     // subclasses don't need to tick input - dryFrames_ contains "dry" input by the time
     // computeOutput() is called
-    inline void Effect_::tick(TonicFrames &frames, const SynthesisContext_ &context ){
+    inline void Effect_::tick(TonicFrames &frames, const TonicContext_ &context ){
       
       // check context to see if we need new frames
       if (context.elapsedFrames == 0 || lastFrameIndex_ != context.elapsedFrames){
@@ -122,7 +122,7 @@ namespace Tonic {
       
     }
     
-    inline void Effect_::tickThrough(TonicFrames & inFrames, TonicFrames & outFrames, const SynthesisContext_ & context){
+    inline void Effect_::tickThrough(TonicFrames & inFrames, TonicFrames & outFrames, const TonicContext_ & context){
 
         // Do not check context here, assume each call should produce new output.
         
@@ -161,11 +161,11 @@ namespace Tonic {
       return static_cast<EffectType&>(*this);
     }
     
-    void tickThrough( TonicFrames & inFrames, const Tonic_::SynthesisContext_ & context){ // ticks in-place
+    void tickThrough( TonicFrames & inFrames, const Tonic_::TonicContext_ & context){ // ticks in-place
       this->gen()->tickThrough(inFrames, inFrames, context);
     }
     
-    void tickThrough(TonicFrames & inFrames, TonicFrames & outFrames, const Tonic_::SynthesisContext_ & context){
+    void tickThrough(TonicFrames & inFrames, TonicFrames & outFrames, const Tonic_::TonicContext_ & context){
       this->gen()->tickThrough(inFrames, outFrames, context);
     }
     

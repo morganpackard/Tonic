@@ -41,7 +41,7 @@ namespace Tonic {
       float lastYVal;
       float lastXVal;
     
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const TonicContext_ & context);
       
     public:
       ControlXYSpeed_();
@@ -50,7 +50,7 @@ namespace Tonic {
       
     };
     
-    inline void ControlXYSpeed_::computeOutput(const SynthesisContext_ & context){
+    inline void ControlXYSpeed_::computeOutput(const TonicContext_ & context){
       const int numToAverage = 1;
       ControlGeneratorOutput xOut = x.tick(context);
       ControlGeneratorOutput yOut = y.tick(context);

@@ -139,44 +139,6 @@ namespace Tonic {
     TonicUInt32 i[2];
   };
   
-  
-  namespace Tonic_{
-    
-    //! Context which defines a particular synthesis graph
-    
-    /*! 
-        Context passed down from root BufferFiller graph object to all sub-generators.
-        synchronizes signal flow in cases when generator output is shared between multiple inputs
-    */
-    struct SynthesisContext_{
-      
-      //! Number of frames elapsed since context start
-      // unsigned long will last 38+ days before overflow at 44.1 kHz
-      unsigned long elapsedFrames;
-      
-      //! Elapsed time since context start
-      double elapsedTime;
-      
-      //! If true, generators will be forced to compute fresh output
-      // TODO: Not fully implmenented yet -- ND 2013/05/20
-      bool forceNewOutput;
-            
-      SynthesisContext_() : elapsedFrames(0), elapsedTime(0), forceNewOutput(true){}
-    
-      void tick() {
-        elapsedFrames += kSynthesisBlockSize;
-        elapsedTime = (double)elapsedFrames/sampleRate();
-        forceNewOutput = false;
-      };
-    
-    };
-    
-  } // namespace Tonic_
-  
-  //! Dummy context for ticking things in-place.
-  // Will always be at time 0, forceNewOutput == true
-  static const Tonic_::SynthesisContext_ DummyContext;
-
 #pragma mark - Utility Functions
   
   //-- Vector Math --
@@ -274,7 +236,9 @@ namespace Tonic {
     float diff = b - a;
     float r = random * diff;
     return a + r;
-}
+  }
+  
+  // ---------------------------------------------------
 
   //! Tonic exception class
   // May want to implement custom exception behavior here, but for now, this is essentially a typedef
@@ -399,7 +363,56 @@ namespace Tonic {
     }
     
   };
-
+  
+  // ***********************************
+  //          TonicContext
+  // ***********************************
+  
+  namespace Tonic_{
+    
+    //! Context which defines a particular synthesis graph
+    /*!
+     Context passed down from root BufferFiller graph object to all sub-generators.
+     synchronizes signal flow in cases when generator output is shared between multiple inputs
+     */
+    class TonicContext_{
+      
+    public:
+      
+      //! Number of frames elapsed since context start
+      // unsigned long will last 38+ days before overflow at 44.1 kHz
+      unsigned long elapsedFrames;
+      
+      //! Elapsed time since context start
+      double elapsedTime;
+      
+      //! If true, generators will be forced to compute fresh output
+      // TODO: Not fully implmenented yet -- ND 2013/05/20
+      bool forceNewOutput;
+      
+      TonicContext_() : elapsedFrames(0), elapsedTime(0), forceNewOutput(true){}
+      
+      void tick() {
+        elapsedFrames += kSynthesisBlockSize;
+        elapsedTime = (double)elapsedFrames/sampleRate();
+        forceNewOutput = false;
+      };
+      
+    };
+    
+  } // namespace Tonic_
+  
+  class TonicContext : public TonicSmartPointer<Tonic_::TonicContext_>
+  {
+    public:
+    
+    TonicContext() : TonicSmartPointer<Tonic_::TonicContext_>(new Tonic_::TonicContext_()) {};
+    
+    void tick(){
+      static_cast<Tonic_::TonicContext_*>(obj)->tick();
+    }
+    
+  };
   
 } // namespace Tonic
 

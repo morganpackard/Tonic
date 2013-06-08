@@ -43,7 +43,7 @@ namespace Tonic {
       
       bool isLimiter_;
       
-      void computeOutput( const SynthesisContext_ &context );
+      void computeOutput( const TonicContext_ &context );
       
     public:
       
@@ -51,8 +51,8 @@ namespace Tonic {
 
       // Base class methods overridden here for specialized input behavior
       void setInput( Generator input );
-      void tick(TonicFrames &frames, const SynthesisContext_ & context );
-      void tickThrough(TonicFrames & inFrames, TonicFrames & outFrames, const SynthesisContext_ & context);
+      void tick(TonicFrames &frames, const TonicContext_ & context );
+      void tickThrough(TonicFrames & inFrames, TonicFrames & outFrames, const TonicContext_ & context);
       
       // setters
       void setAudioInput( Generator gen );
@@ -73,7 +73,7 @@ namespace Tonic {
       
     };
     
-    inline void Compressor_::tick(TonicFrames &frames, const SynthesisContext_ &context ){
+    inline void Compressor_::tick(TonicFrames &frames, const TonicContext_ &context ){
       
       if (context.forceNewOutput || lastFrameIndex_ != context.elapsedFrames){
         amplitudeInput_.tick(ampInputFrames_, context); // get amp input frames
@@ -82,12 +82,12 @@ namespace Tonic {
       
     }
     
-    inline void Compressor_::tickThrough(TonicFrames & inFrames, TonicFrames & outFrames, const SynthesisContext_ & context){
+    inline void Compressor_::tickThrough(TonicFrames & inFrames, TonicFrames & outFrames, const TonicContext_ & context){
       ampInputFrames_.copy(inFrames);
       Effect_::tickThrough(inFrames, outFrames, context);
     }
     
-    inline void Compressor_::computeOutput(const SynthesisContext_ &context){
+    inline void Compressor_::computeOutput(const TonicContext_ &context){
       
       // Tick all scalar parameters
       float attackCoef = t60ToOnePoleCoef(max(0,attackGen_.tick(context).value));

@@ -22,7 +22,7 @@ namespace Tonic {
     class ControlSwitcher_ : public ControlGenerator_{
       
     protected:
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const TonicContext_ & context);
      
       vector<ControlGenerator>  inputs_;
       ControlGenerator          inputIndex_;
@@ -38,7 +38,7 @@ namespace Tonic {
       
     };
     
-    inline void ControlSwitcher_::computeOutput(const SynthesisContext_ & context){
+    inline void ControlSwitcher_::computeOutput(const TonicContext_ & context){
       
       for(vector<ControlGenerator>::iterator it = inputs_.begin(); it != inputs_.end(); it++){
         it->tick(context);
@@ -72,7 +72,7 @@ namespace Tonic {
       int direction;
       bool hasBeenTriggered;
       
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const TonicContext_ & context);
       
     public:
       ControlStepper_();
@@ -83,7 +83,7 @@ namespace Tonic {
       void setBidirectional(ControlGenerator arg){bidirectional = arg;}
     };
     
-    inline void ControlStepper_::computeOutput(const SynthesisContext_ & context){
+    inline void ControlStepper_::computeOutput(const TonicContext_ & context){
       float startVal = start.tick(context).value;
       float endVal = end.tick(context).value;
       float stepVal = step.tick(context).value;
@@ -116,7 +116,7 @@ namespace Tonic {
     class ControlCounter_ : public ControlGenerator_{
       
     protected:
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const TonicContext_ & context);
       ControlGenerator trigger;
       ControlGenerator end;
       
@@ -129,7 +129,7 @@ namespace Tonic {
       
     };
     
-    inline void ControlCounter_::computeOutput(const SynthesisContext_ & context){
+    inline void ControlCounter_::computeOutput(const TonicContext_ & context){
       ControlGeneratorOutput tickOut = trigger.tick(context);
       ControlGeneratorOutput endOut = end.tick(context);
       output_.triggered = tickOut.triggered;
@@ -146,7 +146,7 @@ namespace Tonic {
     class ControlSnapToScale_ : public ControlConditioner_{
       
     protected:
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const TonicContext_ & context);
       vector<float> mScale;
       float snap(float number);
       
@@ -156,7 +156,7 @@ namespace Tonic {
       
     };
     
-    inline void ControlSnapToScale_::computeOutput(const SynthesisContext_ & context){
+    inline void ControlSnapToScale_::computeOutput(const TonicContext_ & context){
       
       static const int NOTES_PER_OCTAVE = 12;
       

@@ -18,7 +18,8 @@ namespace Tonic{
     
     ControlGeneratorOutput ControlGenerator_::initialOutput(){
       // return output from passing in dummy context
-      return tick(Tonic::DummyContext);
+      // TODO: Fix
+      return output_;//tick(Tonic::DummyContext);
     }
     
   }

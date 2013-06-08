@@ -34,7 +34,7 @@ namespace Tonic {
       ControlGenerator lengthGen_;
       ControlGenerator valueGen_;
       
-      void computeOutput( const SynthesisContext_ & context );
+      void computeOutput( const TonicContext_ & context );
       
     public:
       RampedValue_();
@@ -51,7 +51,7 @@ namespace Tonic {
   
     };
     
-    inline void RampedValue_::computeOutput( const SynthesisContext_ & context ){
+    inline void RampedValue_::computeOutput( const TonicContext_ & context ){
           
       // First set the value, if necessary (abort ramp, go immediately to value)
       ControlGeneratorOutput valueOutput = valueGen_.tick(context);

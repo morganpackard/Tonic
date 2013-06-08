@@ -31,7 +31,7 @@ namespace Tonic {
 
       DelayLine delayLine_;
       
-      void computeOutput( const SynthesisContext_ &context );
+      void computeOutput( const TonicContext_ &context );
       
     public:
       
@@ -49,7 +49,7 @@ namespace Tonic {
             
     };
     
-    inline void BasicDelay_::computeOutput(const SynthesisContext_ &context){
+    inline void BasicDelay_::computeOutput(const TonicContext_ &context){
       
       delayTimeGen_.tick(delayTimeFrames_, context);
       fbkGen_.tick(fbkFrames_, context);

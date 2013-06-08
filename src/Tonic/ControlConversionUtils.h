@@ -16,7 +16,7 @@ namespace Tonic{
     class ControlFloor_ : public ControlConditioner_{
       
     protected:
-      inline void computeOutput(const SynthesisContext_ & context){
+      inline void computeOutput(const TonicContext_ & context){
         output_.value = (int)input_.tick(context).value;
         output_.triggered = input_.tick(context).triggered;
       }
@@ -28,7 +28,7 @@ namespace Tonic{
     class ControlRound_ : public ControlConditioner_{
       
     protected:
-      inline void computeOutput(const SynthesisContext_ & context){
+      inline void computeOutput(const TonicContext_ & context){
         output_.value = roundf(input_.tick(context).value);
         output_.triggered = input_.tick(context).triggered;
       }
@@ -41,7 +41,7 @@ namespace Tonic{
      
     protected:
       
-      inline void computeOutput(const SynthesisContext_ & context){
+      inline void computeOutput(const TonicContext_ & context){
         
         ControlGeneratorOutput inputOut = input_.tick(context);
         output_.triggered = inputOut.triggered;
@@ -57,7 +57,7 @@ namespace Tonic{
       
     protected:
       
-      inline void computeOutput(const SynthesisContext_ & context){
+      inline void computeOutput(const TonicContext_ & context){
       
         ControlGeneratorOutput inputOutput = input_.tick(context);
         output_.triggered = inputOutput.triggered;

@@ -21,7 +21,7 @@ namespace Tonic {
     class ControlPrinter_ : public ControlConditioner_{
       
     protected:
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const TonicContext_ & context);
       
       string message;
       bool hasPrinted;
@@ -32,7 +32,7 @@ namespace Tonic {
       
     };
     
-    inline void ControlPrinter_::computeOutput(const SynthesisContext_ & context){
+    inline void ControlPrinter_::computeOutput(const TonicContext_ & context){
       output_ = input_.tick(context);
       if(!hasPrinted ||  (output_.triggered)){
         printf(message.c_str(), output_.value);

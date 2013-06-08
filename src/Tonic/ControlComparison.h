@@ -39,7 +39,7 @@ namespace Tonic {
       ControlGenerator rhsGen_;
       
       virtual bool satisfiesCondition( TonicFloat l, TonicFloat r) = 0;
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const TonicContext_ & context);
       
     public:
       

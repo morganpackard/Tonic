@@ -36,7 +36,7 @@ namespace Tonic {
       Generator frequencyGenerator_;
       TonicFrames modFrames_;
       
-      void computeOutput( const SynthesisContext_ & context );
+      void computeOutput( const TonicContext_ & context );
       
     public:
       
@@ -55,7 +55,7 @@ namespace Tonic {
 
     };
     
-    inline void TableLookupOsc_::computeOutput( const SynthesisContext_ & context ){
+    inline void TableLookupOsc_::computeOutput( const TonicContext_ & context ){
       
       // Update the frequency data
       frequencyGenerator_.tick(modFrames_, context);
@@ -130,7 +130,7 @@ namespace Tonic {
       
       double phaseAccum_;
       
-      void computeOutput( const SynthesisContext_ &context );
+      void computeOutput( const TonicContext_ &context );
       
     public:
       
@@ -147,7 +147,7 @@ namespace Tonic {
       
     };
     
-    inline void RectWave_::computeOutput(const SynthesisContext_ &context){
+    inline void RectWave_::computeOutput(const TonicContext_ &context){
       
       // tick freq and pwm
       freqGen_.tick(freqFrames_, context);
@@ -209,7 +209,7 @@ namespace Tonic {
       
       double phaseAccum_;
       
-      void computeOutput( const SynthesisContext_ &context );
+      void computeOutput( const TonicContext_ &context );
       
     public:
       
@@ -226,7 +226,7 @@ namespace Tonic {
       
     };
     
-    inline void AngularWave_::computeOutput(const SynthesisContext_ &context){
+    inline void AngularWave_::computeOutput(const TonicContext_ &context){
       
       // tick freq and slope inputs
       freqGen_.tick(freqFrames_, context);

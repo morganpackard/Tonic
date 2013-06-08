@@ -31,14 +31,14 @@ namespace Tonic {
       
       protected:
             
-        void computeOutput(const SynthesisContext_ & context);
+        void computeOutput(const TonicContext_ & context);
       
         TonicFloat  value_;
         bool        changed_;
       
     };
     
-    inline void ControlValue_::computeOutput(const SynthesisContext_ & context){
+    inline void ControlValue_::computeOutput(const TonicContext_ & context){
       output_.triggered =  (changed_ || context.forceNewOutput);
       changed_ = context.forceNewOutput; // if new output forced, don't reset changed status until next tick
       output_.value = value_;

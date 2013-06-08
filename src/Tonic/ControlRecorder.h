@@ -21,7 +21,7 @@ namespace Tonic {
     class ControlRecorder_ : public ControlConditioner_{
       
     protected:
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const TonicContext_ & context);
       vector<ControlGeneratorOutput> recording;
       vector<ControlGeneratorOutput>::iterator playbackHead;
       ControlGenerator mode;
@@ -53,7 +53,7 @@ namespace Tonic {
   // put down here so we can use the enum
   namespace Tonic_ {
     
-    inline void ControlRecorder_::computeOutput(const SynthesisContext_ & context){
+    inline void ControlRecorder_::computeOutput(const TonicContext_ & context){
       
       ControlGeneratorOutput inputOut = input_.tick(context);
       ControlGeneratorOutput modeOut = mode.tick(context);

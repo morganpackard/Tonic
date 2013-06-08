@@ -21,7 +21,7 @@ namespace Tonic{
     class ControlRandom_ : public ControlGenerator_{
      
      
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const TonicContext_ & context);
       public:
      
       ControlGenerator max;
@@ -35,7 +35,7 @@ namespace Tonic{
       void setTrigger(ControlGenerator arg){trigger = arg;}
     };
     
-    inline void ControlRandom_::computeOutput(const SynthesisContext_ & context){
+    inline void ControlRandom_::computeOutput(const TonicContext_ & context){
       ControlGeneratorOutput minOut = min.tick(context);
       ControlGeneratorOutput maxOut = max.tick(context);
       

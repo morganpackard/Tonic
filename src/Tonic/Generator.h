@@ -15,6 +15,8 @@
 #include "BaseGenerator.h"
 #include "TonicFrames.h"
 
+#include <memory>
+
 namespace Tonic {
   
   namespace Tonic_{
@@ -27,7 +29,7 @@ namespace Tonic {
       
         Generator_ * copy() { return NULL; }
       
-        virtual void tick( TonicFrames& frames, const SynthesisContext_ &context );
+        virtual void tick( TonicFrames& frames, const TonicContext_ &context );
       
         bool isStereoOutput(){ return isStereoOutput_; };
         
@@ -42,7 +44,7 @@ namespace Tonic {
       
     };
     
-    inline void Generator_::tick(TonicFrames &frames, const SynthesisContext_ &context ){
+    inline void Generator_::tick(TonicFrames &frames, const TonicContext_ &context ){
       
       // check context to see if we need new frames
       if (context.forceNewOutput || lastFrameIndex_ != context.elapsedFrames){
@@ -68,7 +70,7 @@ namespace Tonic {
         return static_cast<Tonic_::Generator_*>(obj)->isStereoOutput();
       }
       
-      virtual void tick(TonicFrames& frames, const Tonic_::SynthesisContext_ & context){
+      virtual void tick(TonicFrames& frames, const Tonic_::TonicContext_ & context){
         static_cast<Tonic_::Generator_*>(obj)->tick(frames, context);
       }
   };
